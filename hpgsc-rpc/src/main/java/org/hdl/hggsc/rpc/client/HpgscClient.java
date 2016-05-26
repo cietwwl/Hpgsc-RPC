@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.hdl.hggsc.rpc.client.event.DefaultEventDispatcher;
 import org.hdl.hggsc.rpc.client.event.EventDispatcher;
-import org.hdl.hggsc.rpc.client.event.EventListener;
+import org.hdl.hggsc.rpc.client.event.ServerEventListener;
 import org.hdl.hggsc.rpc.codec.CodecException;
 import org.hdl.hggsc.rpc.codec.CodecFactory;
 import org.hdl.hggsc.rpc.codec.RpcCodec;
@@ -311,7 +311,7 @@ public class HpgscClient implements IClient {
 	}
 
 	@Override
-	public void registerListener(long evtId, Class<? extends Record> parameClass,EventListener listener) {
+	public void registerListener(long evtId, Class<? extends Record> parameClass,ServerEventListener listener) {
 		dispatcher.addListener(evtId, listener, parameClass);
 	}
 

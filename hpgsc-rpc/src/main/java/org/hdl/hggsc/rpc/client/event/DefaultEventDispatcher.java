@@ -16,7 +16,7 @@ public class DefaultEventDispatcher implements EventDispatcher {
 	
 	private final IClient client;
 	
-	private Map<Long, EventListener> listeners = new HashMap<Long, EventListener>();
+	private Map<Long, ServerEventListener> listeners = new HashMap<Long, ServerEventListener>();
 	
 	private Map<Long, Class<? extends Record>> parames = new HashMap<Long, Class<? extends Record>>();
 	
@@ -25,7 +25,7 @@ public class DefaultEventDispatcher implements EventDispatcher {
 	}
 	
 	@Override
-	public void addListener(long id, EventListener listener,Class<? extends Record> parame) {
+	public void addListener(long id, ServerEventListener listener,Class<? extends Record> parame) {
 		Preconditions.checkArgument(listener != null, "listener must not be null!!");
 		listeners.put(id, listener);
 		parames.put(id, parame);
@@ -34,7 +34,7 @@ public class DefaultEventDispatcher implements EventDispatcher {
 	@Override
 	public void dispatch(NetEvent event) {
 		long id = event.getId();
-		EventListener listener = listeners.get(id);
+		ServerEventListener listener = listeners.get(id);
 		if (listener != null) {
 			try {
 				listener.handleEvent(event);

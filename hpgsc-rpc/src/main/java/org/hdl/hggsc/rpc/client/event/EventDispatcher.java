@@ -9,7 +9,7 @@ import org.hdl.hpgsc.common.io.Record;
  */
 public interface EventDispatcher {
 	
-	void addListener(long id, EventListener listener,Class<? extends Record> parame);
+	void addListener(long id, ServerEventListener listener,Class<? extends Record> parame);
 	
 	Class<? extends Record> getParame(long id);
 	

@@ -1,6 +1,6 @@
 package org.hdl.hggsc.rpc.client;
 
-import org.hdl.hggsc.rpc.client.event.EventListener;
+import org.hdl.hggsc.rpc.client.event.ServerEventListener;
 import org.hdl.hpgsc.common.io.Record;
 
 /**
@@ -66,7 +66,7 @@ public interface IClient {
 	 * @param parameClass
 	 * @param listener
 	 */
-	void registerListener(long evtId,Class<? extends Record> parameClass,EventListener listener);
+	void registerListener(long evtId,Class<? extends Record> parameClass,ServerEventListener listener);
 	/**
 	 * 连接远程服务
 	 */
