@@ -12,5 +12,6 @@
 
 	<modules>
 		<module>hpgsc-test-benchmark</module>
+		<module>hpgsc-test-example</module>
 	</modules>
 </project>
