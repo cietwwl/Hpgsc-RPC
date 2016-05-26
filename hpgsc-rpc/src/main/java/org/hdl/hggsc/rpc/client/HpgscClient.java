@@ -66,7 +66,14 @@ public class HpgscClient implements IClient {
     // 心跳超时，毫秒。缺省0，不会执行心跳
     private int heartbeat;
     private int heartbeatTimeout;
-	
+	/**
+	 * build hpgsc client
+	 * @param identify
+	 * @param remoteIp
+	 * @param remotePort
+	 * @param connectTimeout  
+	 * @return
+	 */
 	public static HpgscClient build(String identify,String remoteIp,int remotePort,int connectTimeout) {
 		HpgscClientConf conf = new HpgscClientConf();
 		conf.setRemoteHost(remoteIp);
@@ -251,7 +258,7 @@ public class HpgscClient implements IClient {
 	}
 	
 	@Override
-	public <T extends Record> ResponseFuture<T> request(long serviceId,Record requestParam, Class<T> responseClass) {
+	public <T extends Record> ResponseFuture<T> asyncRequest(long serviceId,Record requestParam, Class<T> responseClass) {
 		NetRequest request = new NetRequest(serviceId);
 		request.setTwoWay(true);
 		request.setContent(requestParam);
@@ -259,7 +266,7 @@ public class HpgscClient implements IClient {
 	}
 	
 	@Override
-	public void reqeust(long serviceId, Record content) {
+	public void notify(long serviceId, Record content) {
 		if (isUsable()) {
 			try {
 				long sequence = SEQUENCE_GEN.incrementAndGet();
@@ -277,7 +284,7 @@ public class HpgscClient implements IClient {
 	}
 
 	@Override
-	public <T extends Record> void request(long serviceId, Record requestParam,Class<T> responseClass, ResponseCallback<T> callback) {
+	public <T extends Record> void asyncRequest(long serviceId, Record requestParam,Class<T> responseClass, ResponseCallback<T> callback) {
 		if (isUsable()) {
 			Preconditions.checkArgument(callback != null, "callback must be not null!!");
 			try {
@@ -302,7 +309,7 @@ public class HpgscClient implements IClient {
 	@Override
 	public <T extends Record> T syncRequest(long serviceId,Record requestParam,Class<T> responseClass) {
 		try {
-			return request(serviceId,requestParam,responseClass).get();
+			return asyncRequest(serviceId,requestParam,responseClass).get();
 		}catch(RpcException e) {
 			throw e;
 		}catch (InterruptedException e) {

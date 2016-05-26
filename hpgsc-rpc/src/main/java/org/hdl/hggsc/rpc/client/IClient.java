@@ -36,7 +36,7 @@ public interface IClient {
 	 * @param responseClass		返回参数类型
 	 * @return
 	 */
-	<T extends Record> ResponseFuture<T> request(long serviceId,Record requestParam,Class<T> responseClass);
+	<T extends Record> ResponseFuture<T> asyncRequest(long serviceId,Record requestParam,Class<T> responseClass);
 	/**
 	 * 异步调用远程服务
 	 * @param serviceId			服务id
@@ -45,14 +45,14 @@ public interface IClient {
 	 * @param callback			响应回调
 	 * @return
 	 */
-	<T extends Record> void request(long serviceId,Record requestParam,Class<T> responseClass,ResponseCallback<T> callback);
+	<T extends Record> void asyncRequest(long serviceId,Record requestParam,Class<T> responseClass,ResponseCallback<T> callback);
 	/**
 	 * 异步调用远程服务，不需要远程服务器响应
 	 * @param sid				服务id
 	 * @param content 			请求信息
 	 * @return
 	 */
-	void reqeust(long serviceId,Record requestParam);
+	void notify(long serviceId,Record requestParam);
 	/**
 	 * 同步调用远程服务
 	 * @param responseClass
