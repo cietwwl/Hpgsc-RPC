@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.hdl.hggsc.rpc.client.HpgscClient;
-import org.hdl.hggsc.rpc.client.ResponseFuture;
 import org.hdl.hggsc.rpc.client.event.ServerEventListener;
 import org.hdl.hggsc.rpc.protocol.NetEvent;
 import org.hdl.hggsc.rpc.protocol.common.StringParam;
