@@ -22,9 +22,11 @@ public final class ExchangeChannels {
 		Queue<ExchangeChannel> channels = CHANNEL_CACHE.get(identify);
 		ExchangeChannel channel = null;
 		if (channels != null) {
-			while ((channel = channels.poll()) != null) {
+			while ((channel = channels.peek()) != null) {
 				if (channel.isConnected()) {
 					return channel;
+				}else {
+					channels.poll();
 				}
 			}
 		}
@@ -84,7 +86,9 @@ public final class ExchangeChannels {
 		if (keySet != null) {
 			for (String identify : keySet) {
 				ExchangeChannel channel = getChannel(identify);
-				channel.push(id, parame);
+				if (channel != null) {
+					channel.push(id, parame);
+				}
 			}
 		}
 	}

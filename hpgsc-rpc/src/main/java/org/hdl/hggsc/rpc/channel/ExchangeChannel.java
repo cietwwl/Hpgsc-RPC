@@ -64,7 +64,7 @@ public final class ExchangeChannel {
 	}
 	
 	public boolean isConnected() {
-		return this.isConnected();
+		return this.channel.isConnected();
 	}
 	
 	public String getIdentify() {
