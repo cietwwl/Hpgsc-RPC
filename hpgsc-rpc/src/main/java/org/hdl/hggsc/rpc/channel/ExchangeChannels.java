@@ -79,7 +79,7 @@ public final class ExchangeChannels {
 		}
 	}
 	
-	public static final void pushAll(long id,Record parame) {
+	public static final void broadcast(long id,Record parame) {
 		Set<String> keySet = CHANNEL_CACHE.keySet();
 		if (keySet != null) {
 			for (String identify : keySet) {
